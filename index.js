@@ -1,23 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
-    console.log('Hello World');
 
-    const rootElement = document.querySelector('#root');
-    const sections = document.querySelectorAll('section');
-    let currentSectionIndex = 0;
-    let isTrottled = false;
+    const scroller = new Scroller('#root');
+    console.log(scroller);
 
-    document.addEventListener('mousewheel', function (event) {
-        if (isTrottled) return;
-        isTrottled = true;
-
-        setTimeout(function () {
-            isTrottled = false;
-        }, 200);
-
-        const direction = event.wheelDelta < 0 ? 1 : -1;
-
-        scroll(direction);
-    })
+    document.addEventListener('mousewheel', scroller.listenScroll)
 
     function scroll(direction) {
         if (direction === 1) {
